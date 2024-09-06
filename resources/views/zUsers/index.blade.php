@@ -404,7 +404,15 @@
                         },
                         {
                             data: 'roles',
-                            name: 'roles'
+                            name: 'roles',
+                            render: function(data) {
+                                if (data) {
+                                    // Apply the classes fw-medium and link-primary to the roles text
+                                    return `<span class="fw-medium link-primary"># ${data}</span>`;
+                                } else {
+                                    return '<span class="text-muted">No Role</span>';
+                                }
+                            }
                         },
                         {
                             data: 'is_active',
