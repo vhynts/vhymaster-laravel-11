@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +29,7 @@ class UsersController extends Controller
         if ($request->ajax()) {
             $customSearch = $request->get('customSearch');
             $statusFilter = $request->get('statusFilter'); // Get status filter value
+            $rolesFilter = $request->get('rolesFilter'); // Get roles filter value
 
             $users = User::with('roles') // Eager load roles
                 ->select(['id', 'code', 'name', 'email', 'is_active', 'created_at', 'updated_at']);
@@ -46,6 +48,14 @@ class UsersController extends Controller
             if ($statusFilter !== null && $statusFilter !== '') {
                 $users->where('is_active', $statusFilter);
             }
+
+            // Roles filter
+            if ($rolesFilter !== null && $rolesFilter !== '') {
+                $users->whereHas('roles', function ($q) use ($rolesFilter) {
+                    $q->where('id', $rolesFilter); // Filter users by role ID
+                });
+            }
+
 
             return DataTables::of($users)
                 ->addIndexColumn()

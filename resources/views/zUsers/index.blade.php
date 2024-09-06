@@ -232,7 +232,7 @@
                 <div class="card-body border border-dashed border-end-0 border-start-0 row mb-2" id="filterForm"
                     style="display: none">
 
-                    <div class="col-xxl-8 col-md-8 mb-2">
+                    <div class="col-xxl-6 col-md-8 mb-2">
                         <div class="search-box">
                             <input type="text" class="form-control search bg-light border-light" name="customSearch"
                                 id="customSearch" placeholder="Cari nama atau lainnya...">
@@ -240,7 +240,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-4 col-md-4 mb-2">
+                    <div class="col-xxl-3 col-md-4 mb-2">
                         <div class="input-light">
                             <select class="form-control" name="statusFilter" id="statusFilter" required>
                                 <option value="" class="text-muted">Semua Status</option>
@@ -249,6 +249,18 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="col-xxl-3 col-md-4 mb-2">
+                        <div class="input-light">
+                            <select class="form-control" name="rolesFilter" id="rolesFilter" required>
+                                <option value="" class="text-muted">Semua Role</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="card-body pt-0">
                     <div>
@@ -320,6 +332,7 @@
 
 
                 $("#statusFilter").select2({});
+                $("#rolesFilter").select2({});
 
 
             });
@@ -368,6 +381,7 @@
                             d._token = '{{ csrf_token() }}';
                             d.customSearch = $('#customSearch').val(); // Add custom search value
                             d.statusFilter = $('#statusFilter').val(); // Add status filter value
+                            d.rolesFilter = $('#rolesFilter').val();
                         }
                     },
                     columns: [{
@@ -447,6 +461,11 @@
 
                 // Reload DataTable on status filter change
                 $('#statusFilter').on('change', function() {
+                    table.ajax.reload();
+                });
+
+                // Reload DataTable on roles filter change
+                $('#rolesFilter').on('change', function() {
                     table.ajax.reload();
                 });
             });
