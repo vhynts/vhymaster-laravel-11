@@ -232,7 +232,7 @@
                 <div class="card-body border border-dashed border-end-0 border-start-0 row mb-2" id="filterForm"
                     style="display: none">
 
-                    <div class="col-xxl-6 col-md-8 mb-2">
+                    <div class="col-xxl-6 col-md-6 mb-2">
                         <div class="search-box">
                             <input type="text" class="form-control search bg-light border-light" name="customSearch"
                                 id="customSearch" placeholder="Cari nama atau lainnya...">
@@ -240,7 +240,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-3 col-md-4 mb-2">
+                    <div class="col-xxl-3 col-md-3 mb-2">
                         <div class="input-light">
                             <select class="form-control" name="statusFilter" id="statusFilter" required>
                                 <option value="" class="text-muted">Semua Status</option>
@@ -250,7 +250,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-3 col-md-4 mb-2">
+                    <div class="col-xxl-3 col-md-3 mb-2">
                         <div class="input-light">
                             <select class="form-control" name="rolesFilter" id="rolesFilter" required>
                                 <option value="" class="text-muted">Semua Role</option>
