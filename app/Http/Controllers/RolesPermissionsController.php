@@ -140,7 +140,7 @@ class RolesPermissionsController extends Controller
         $permissions = Permission::all();
 
 
-        return view('zRolesPermissions.kelolaRolesIndex', compact('judul', 'roles', 'permissions'));
+        return view('zRolesPermissions.kelolaPeranIndex', compact('judul', 'roles', 'permissions'));
     }
 
     public function kelolaRolesUpdate(Request $request)
