@@ -131,7 +131,7 @@
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="remember"
-                                                id="auth-remember-check">
+                                                id="auth-remember-check" disabled>
                                             <label class="form-check-label" for="auth-remember-check">Ingat
                                                 saya</label>
                                         </div>

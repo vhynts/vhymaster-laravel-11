@@ -204,7 +204,7 @@
                             return `
          <button type="button" class="btn btn-sm btn-primary edit-permission" data-id="${data}" data-name="${row.name}" data-guard="${row.guard_name}" data-toggle="modal" data-target="#modalEditIzin"><i class="ri-edit-2-fill"></i></button>
          
-            <form action="{{ url('/lainnya/izin/${data}/delete') }}" method="POST" class="delete-form" style="display:inline;">
+            <form action="{{ url('/others/permissions/${data}/delete') }}" method="POST" class="delete-form" style="display:inline;">
                 @csrf
                 @method('DELETE')
                 <button type="button" class="btn btn-sm btn-danger delete-button"><i class="ri-delete-bin-fill"></i></button>
@@ -261,7 +261,7 @@
 
 
             // Set the form action to the update route
-            $('#formEditIzin').attr('action', `/lainnya/izin/${permissionId}/update`);
+            $('#formEditIzin').attr('action', `/others/permissions/${permissionId}/update`);
 
             // Populate the modal fields with role data
             $('#namaIzinEdit').val(permissionName);

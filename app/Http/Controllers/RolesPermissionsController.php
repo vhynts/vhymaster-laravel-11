@@ -85,7 +85,7 @@ class RolesPermissionsController extends Controller
 
         $role->save();
 
-        return redirect()->route('peranIndex')->with('success', 'Role updated successfully.');
+        return redirect()->route('rolesIndex')->with('success', 'Role updated successfully.');
     }
     public function permissionsUpdate(Request $request, $id)
     {
@@ -103,7 +103,7 @@ class RolesPermissionsController extends Controller
 
         $permission->save();
 
-        return redirect()->route('izinIndex')->with('success', 'Role updated successfully.');
+        return redirect()->route('permissionsIndex')->with('success', 'Role updated successfully.');
     }
 
 
@@ -112,7 +112,7 @@ class RolesPermissionsController extends Controller
         $role = Role::findOrFail($id);
         $role->delete();
 
-        return redirect()->route('peranIndex')->with('success', 'Peran berhasil dihapus.');
+        return redirect()->route('rolesIndex')->with('success', 'Peran berhasil dihapus.');
     }
 
     public function permissionsHapus($id)
@@ -120,7 +120,7 @@ class RolesPermissionsController extends Controller
         $permission = Permission::findOrFail($id);
         $permission->delete();
 
-        return redirect()->route('izinIndex')->with('success', 'Izin berhasil dihapus.');
+        return redirect()->route('permissionsIndex')->with('success', 'Izin berhasil dihapus.');
     }
 
 
@@ -140,7 +140,7 @@ class RolesPermissionsController extends Controller
         $permissions = Permission::all();
 
 
-        return view('zRolesPermissions.kelolaPeranIndex', compact('judul', 'roles', 'permissions'));
+        return view('zRolesPermissions.kelolaRolesIndex', compact('judul', 'roles', 'permissions'));
     }
 
     public function kelolaRolesUpdate(Request $request)

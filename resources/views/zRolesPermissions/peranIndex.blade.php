@@ -216,7 +216,7 @@
                         render: function(data, type, row) {
                             return `
          <button type="button" class="btn btn-sm btn-primary edit-role" data-id="${data}" data-name="${row.name}" data-guard="${row.guard_name}" data-toggle="modal" data-target="#modalEditPeran"> <i class="ri-edit-2-fill"></i></button>
-            <form action="{{ url('/lainnya/peran/${data}/delete') }}" method="POST" class="delete-form" style="display:inline;">
+            <form action="{{ url('/others/roles/${data}/delete') }}" method="POST" class="delete-form" style="display:inline;">
                 @csrf
                 @method('DELETE')
                 <button type="button" class="btn btn-sm btn-danger delete-button"> <i class="ri-delete-bin-fill"></i> </button>
@@ -273,7 +273,7 @@
 
 
             // Set the form action to the update route
-            $('#formEditPeran').attr('action', `/lainnya/peran/${roleId}/update`);
+            $('#formEditPeran').attr('action', `/others/roles/${roleId}/update`);
 
             // Populate the modal fields with role data
             $('#namaPeranEdit').val(roleName);

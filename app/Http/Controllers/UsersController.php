@@ -128,6 +128,17 @@ class UsersController extends Controller
         // Revoke all permissions from the user
         $user->permissions()->detach();
 
+        // Hapus entri cache terkait pengguna
+        Cache::forget('user-is-online-' . $user->id);
+
+        // Hapus sesi pengguna jika pengguna yang sedang login dihapus
+        // Menggunakan cache untuk menampilkan status session
+        $sessionKey = 'user-session-' . $user->id;
+        if (Cache::has($sessionKey)) {
+            Cache::forget($sessionKey);
+        }
+
+
         $user->delete(); // Hapus pengguna
 
         // return redirect()->route('usersIndex')->with('success', 'User deleted successfully');
@@ -181,7 +192,7 @@ class UsersController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'email' => 'required|string|email|max:255', // 'unique:users' checks uniqueness in the 'users' table
-            'status' => 'required',
+            'status' => 'required|boolean',
             'peran' => 'required|string|exists:roles,name', // Ensure the role exists
         ], $messages);
 

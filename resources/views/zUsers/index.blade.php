@@ -411,7 +411,7 @@
                             render: function(data) {
                                 if (data) {
                                     // Apply the classes fw-medium and link-primary to the roles text
-                                    return `<span class="fw-medium link-primary"># ${data}</span>`;
+                                    return `<span class="fw-medium"># ${data}</span>`;
                                 } else {
                                     return '<span class="text-muted">No Role</span>';
                                 }
