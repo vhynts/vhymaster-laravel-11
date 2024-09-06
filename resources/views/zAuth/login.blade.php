@@ -130,7 +130,7 @@
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input" type="checkbox" name="remember"
                                                 id="auth-remember-check">
                                             <label class="form-check-label" for="auth-remember-check">Ingat
                                                 saya</label>
