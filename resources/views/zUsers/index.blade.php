@@ -270,8 +270,8 @@
                                         <th>#</th>
                                         <th>Kode</th>
                                         <th>Nama</th>
-                                        <th>Role</th>
                                         <th>Email</th>
+                                        <th>Role</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -385,12 +385,12 @@
                             name: 'name'
                         },
                         {
-                            data: 'roles',
-                            name: 'roles'
-                        },
-                        {
                             data: 'email',
                             name: 'email'
+                        },
+                        {
+                            data: 'roles',
+                            name: 'roles'
                         },
                         {
                             data: 'is_active',
