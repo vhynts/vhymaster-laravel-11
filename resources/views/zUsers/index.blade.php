@@ -229,7 +229,8 @@
 
                 {{-- END MODAL EDIT USER --}}
 
-                <div class="card-body border border-dashed border-end-0 border-start-0 row mb-2" id="filterForm">
+                <div class="card-body border border-dashed border-end-0 border-start-0 row mb-2" id="filterForm"
+                    style="display: none">
 
                     <div class="col-xxl-8 col-md-8 mb-2">
                         <div class="search-box">
