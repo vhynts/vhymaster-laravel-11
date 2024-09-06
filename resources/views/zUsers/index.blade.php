@@ -235,7 +235,7 @@
                     <div class="col-xxl-6 col-md-6 mb-2">
                         <div class="search-box">
                             <input type="text" class="form-control search bg-light border-light" name="customSearch"
-                                id="customSearch" placeholder="Cari nama atau lainnya...">
+                                id="customSearch" placeholder="Cari nama, email atau lainnya...">
                             <i class="ri-search-line search-icon"></i>
                         </div>
                     </div>

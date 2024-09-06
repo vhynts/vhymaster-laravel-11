@@ -125,15 +125,31 @@
                                     <img class="rounded-circle header-profile-user"
                                         src="{{ asset('assets/images/users/avatar-12.jpg') }}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
-                                        <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
-                                        {{-- <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span> --}}
+                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">
+                                            @php
+                                                $nameArray = explode(' ', Auth::user()->name);
+                                                $nameCount = count($nameArray);
+                                            @endphp
+
+                                            @if ($nameCount === 1)
+                                                {{ $nameArray[0] }}
+                                                <!-- Tampilkan kata pertama jika hanya ada satu kata -->
+                                            @elseif ($nameCount === 2)
+                                                {{ Auth::user()->name }}
+                                                <!-- Tampilkan nama lengkap jika ada dua kata -->
+                                            @else
+                                                {{ $nameArray[0] . ' ' . $nameArray[1] }}
+                                                <!-- Tampilkan dua kata pertama jika lebih dari dua kata -->
+                                            @endif
+                                        </span>
+                                        <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">
+                                            # {{ Auth::user()->roles->pluck('name')->implode(', ') }}</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome Anna!</h6>
+                                {{-- <h6 class="dropdown-header">Welcome Anna!</h6> --}}
 
                                 <button class="dropdown-item btn-update-password" data-bs-toggle="modal"
                                     data-bs-target="#updatePasswordModal"><i
