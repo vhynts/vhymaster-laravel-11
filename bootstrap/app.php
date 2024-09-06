@@ -6,6 +6,8 @@ use Illuminate\Foundation\Configuration\Middleware;
 
 use App\Http\Middleware\AuthenticateUser;
 use App\Http\Middleware\AuthenticatedUser;
+use App\Http\Middleware\UserActivity;
+
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -24,7 +26,17 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
 
         ]);
+
+        // Tambahkan middleware LastUserActivity ke grup web
+        $middleware->web(append: [
+            UserActivity::class,
+        ]);
+
+
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+
+

@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
+
 
 class UsersController extends Controller
 {
@@ -32,7 +35,7 @@ class UsersController extends Controller
             $rolesFilter = $request->get('rolesFilter'); // Get roles filter value
 
             $users = User::with('roles') // Eager load roles
-                ->select(['id', 'code', 'name', 'email', 'is_active', 'created_at', 'updated_at']);
+                ->select(['id', 'code', 'name', 'email', 'is_active', 'created_at', 'updated_at', 'last_login',]);
 
             // Custom search filter
             if ($customSearch) {
@@ -61,6 +64,15 @@ class UsersController extends Controller
                 ->addIndexColumn()
                 ->addColumn('roles', function ($user) {
                     return $user->roles->pluck('name')->implode(', '); // Format roles as comma-separated string
+                })
+                ->editColumn('last_login', function ($user) {
+                    // Format last_login menggunakan Carbon
+                    return $user->last_login ? Carbon::parse($user->last_login)->format('Y-m-d, H:i') : '-';
+                })
+                ->addColumn('status_login', function ($user) {
+                    // Cek apakah user sedang online
+                    $isOnline = Cache::has('user-is-online-' . $user->id);
+                    return $isOnline ? '<span class="badge bg-success-subtle text-success badge-border">Online</span>' : '<span class="badge bg-dark-subtle text-body badge-border">Offline</span>';
                 })
                 ->make(true);
         }
@@ -176,6 +188,7 @@ class UsersController extends Controller
         $user->name = $validatedData['nama'];
         $user->email = $validatedData['email'];
         $user->is_active = $validatedData['status'];
+        $user->updated_at = now();
 
         $user->save();
 

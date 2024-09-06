@@ -285,6 +285,8 @@
                                         <th>Email</th>
                                         <th>Role</th>
                                         <th>Status</th>
+                                        <th>Status Login</th>
+                                        <th>Terakhir Login</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -309,6 +311,7 @@
 
     @push('script_body')
         <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/moment/min/moment.min.js') }}"></script>
 
         <!--datatable js-->
         <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -428,6 +431,27 @@
                                 }
                             }
                         },
+                        {
+                            data: 'status_login',
+                            name: 'status_login',
+                            render: function(data, type, row) {
+                                return $('<div/>').html(data).text(); // Render HTML tanpa escape
+                            },
+                            orderable: false,
+                            searchable: false
+                        },
+                        {
+                            data: 'last_login',
+                            name: 'last_login'
+                        },
+                        // {
+                        //     data: 'updated_at',
+                        //     name: 'updated_at',
+                        //     render: function(data) {
+                        //         return moment(data).format(
+                        //             'YYYY-MM-DD, HH:mm'); // Format tanggal dengan Moment.js
+                        //     }
+                        // },
                         {
                             data: 'id',
                             name: 'action',
