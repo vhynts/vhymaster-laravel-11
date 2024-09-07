@@ -459,17 +459,17 @@
                             searchable: false,
                             render: function(data) {
                                 return `
-            <button type="button" class="btn btn-sm btn-primary" onclick="editUser(${data})">
+            <button type="button" class="btn btn-sm btn-primary" title="Edit" onclick="editUser(${data})">
                 <i class="ri-edit-2-fill"></i>
             </button>
             <form id="delete-form-${data}" action="/users/${data}/delete" method="POST" style="display:inline-block;">
                 @csrf
                 @method('DELETE')
-                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete(${data})">
+                <button type="button" class="btn btn-sm btn-danger" title="Delete" onclick="confirmDelete(${data})">
                     <i class="ri-delete-bin-fill"></i>
                 </button>
             </form>
-            <button type="button" class="btn btn-sm btn-warning" onclick="resetPassword(${data})">
+            <button type="button" class="btn btn-sm btn-warning" title="Reset Password" onclick="resetPassword(${data})">
                 <i class="ri-rotate-lock-fill"></i>
             </button>
         `;
@@ -543,9 +543,25 @@
                         data: $(this).serialize(),
 
                         success: function(response) {
-                            alert(response.success); // Show success message
-                            window.location.href = response
-                                .redirect_url; // Redirect to the specified URL
+                            // alert(response.success); // Show success message
+                            // window.location.href = response
+                            //     .redirect_url; // Redirect to the specified URL
+
+                            // Hide the modal
+                            $('#penggunaUpdateModal').modal('hide');
+
+
+                            // Optionally, show a success message
+                            Swal.fire({
+                                title: 'Sukses!',
+                                text: response.success,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                // Optionally reload the DataTable or the page
+                                window.location.href = response
+                                    .redirect_url; // Redirect to the specified URL
+                            });
 
 
                         },

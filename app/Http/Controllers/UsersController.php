@@ -115,7 +115,7 @@ class UsersController extends Controller
         $user->assignRole($validatedData['peran']);
 
         // Return a JSON response indicating success and a redirect URL
-        return response()->json(['success' => 'User created successfully', 'redirect_url' => url('/users')]);
+        return response()->json(['success' => 'Pengguna berhasil ditambah', 'redirect_url' => url('/users')]);
     }
 
     public function userDestroy($id)
@@ -142,7 +142,7 @@ class UsersController extends Controller
         $user->delete(); // Hapus pengguna
 
         // return redirect()->route('usersIndex')->with('success', 'User deleted successfully');
-        return response()->json(['success' => 'User deleted successfully', 'redirect_url' => url('/users')]);
+        return response()->json(['success' => 'Pengguna berhasil dihapus', 'redirect_url' => url('/users')]);
 
     }
 
